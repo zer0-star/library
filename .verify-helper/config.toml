@@ -1,2 +1,2 @@
-[language.nim]
+[languages.nim]
 list_dependencies = "sed 's/^include \\(\"\\?\\)\\(.*\\.nim\\)\\1/\\2/ ; s/^include \\(\"\\?\\)\\(.*\\)\\1/\\2.nim/ ; t ; d' {path}"
