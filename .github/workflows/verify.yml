@@ -20,6 +20,7 @@ jobs:
           python setup.py install
           pip3 install online-judge-verify-helper
           cd ..
+          rm -rf verification-helper
 
         # run: pip3 install -U online-judge-verify-helper
       # required only if you want to verify C# script files
@@ -31,7 +32,13 @@ jobs:
 
       # required only if you want to verify Nim code
       - name: Install dependencies (Nim)
-        run: sudo apt install nim
+        run: |
+          wget https://nim-lang.org/download/nim-1.0.6-linux_x64.tar.xz
+          tar Jxfv nim-1.0.6-linux_x64.tar.xz 2> /dev/null
+          cd nim-1.0.6
+          ./install.sh /usr/local/bin
+          cd ..
+          rm -rf nim-1.0.6
 
       - name: Run tests
         env:
