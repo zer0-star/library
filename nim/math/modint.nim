@@ -4,6 +4,7 @@ include nim/math/mathMod
 when not declared(INCLUDE_GUARD_MATH_MODINT_NIM):
   const INCLUDE_GUARD_MATH_MODINT_NIM = 1
   import math, sequtils
+  import strutils
 
   proc extgcd(x, y: SomeInteger): (int, int) =
     if x < y:
@@ -151,3 +152,6 @@ when not declared(INCLUDE_GUARD_MATH_MODINT_NIM):
         result = result * t mod m
       t = t * t mod m
       p = p shr 1
+
+  template parseModInt(x: string): ModInt =
+    initModInt(x.parseInt)

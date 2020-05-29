@@ -29,12 +29,12 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
     toSeq(x..y-1)
   proc range(x: int): seq[int] {.inline.} =
     toSeq(0..x-1)
-  proc discardableId[T](x: T): T {.discardable.} =
+  proc discardableId[T](x: T): T {.inline, discardable.} =
     return x
   macro `:=`(x, y: untyped): untyped =
     if (x.kind == nnkIdent):
       return quote do:
-        when declared(`x`):
+        when declaredInScope(`x`):
           `x` = `y`
         else:
           var `x` = `y`
@@ -207,3 +207,11 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
           ids.add(quote do: newSeqWith(`cnt`, `val`))
         letSect.add ids
     result.add letSect
+
+  proc makeSeq[T, Idx](num: array[Idx, int]; init: T): auto =
+    when num.len == 1:
+      return newSeqWith(num[0], init)
+    else:
+      var tmp: array[num.len-1, int]
+      for i, t in tmp.mpairs: t = num[i+1]
+      return newSeqWith(num[0], makeSeq(tmp, init))
