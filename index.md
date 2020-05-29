@@ -53,7 +53,7 @@ layout: default
 
 ### nim/math
 
-* :warning: <a href="library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
+* :heavy_check_mark: <a href="library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
 * :heavy_check_mark: <a href="library/nim/math/modint.nim.html">nim/math/modint.nim</a>
 
 

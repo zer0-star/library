@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: nim/math/mathMod.nim
+# :heavy_check_mark: nim/math/mathMod.nim
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -34,6 +34,16 @@ layout: default
     - Last commit date: 2020-01-02 00:38:45+09:00
 
 
+
+
+## Required by
+
+* :heavy_check_mark: <a href="modint.nim.html">nim/math/modint.nim</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
 
 
 ## Code

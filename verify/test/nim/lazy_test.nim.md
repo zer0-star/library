@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/nim/lazy_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 16:28:17+09:00
+    - Last commit date: 2020-05-29 20:56:29+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
@@ -39,6 +39,7 @@ layout: default
 
 ## Depends on
 
+* :heavy_check_mark: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
 * :heavy_check_mark: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
 * :heavy_check_mark: <a href="../../../library/nim/segt/lazy.nim.html">nim/segt/lazy.nim</a>
 * :heavy_check_mark: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
