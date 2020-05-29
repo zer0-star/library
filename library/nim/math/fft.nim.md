@@ -25,24 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/lazy_test.nim
+# :warning: nim/math/fft.nim
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/lazy_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 20:56:29+09:00
+* category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
+* <a href="{{ site.github.repository_url }}/blob/master/nim/math/fft.nim">View this file on GitHub</a>
+    - Last commit date: 2020-05-29 21:27:56+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
-
-
-## Depends on
-
-* :question: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
-* :question: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
-* :heavy_check_mark: <a href="../../../library/nim/segt/lazy.nim.html">nim/segt/lazy.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code
@@ -50,40 +41,51 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
+# %lib-executor: replace math/complex.nim
+include ./complex
+# %lib-executor: end
+# %lib-executor: replace math/polynomial.nim
+include ./polynomial
+# %lib-executor: end
+when not declared(INCLUDE_GUARD_MATH_FFT_NIM):
+  const INCLUDE_GUARD_MATH_FFT_NIM = 1
+  import sequtils, math
 
-include nim/segt/lazy
+  proc fft[T](f: Polynomial[T]; zeta: Complex): Polynomial[Complex] =
+    assert f.len.isPowerOfTwo
+    if f.len == 1:
+      when T is float:
+        return initPolynomial(@[f[0].complex])
+      elif T is Complex:
+        return initPolynomial(@[f[0]])
+      elif T is int:
+        return initPolynomial(@[f[0].float.complex])
+    let dlen = f.len div 2
+    result = initPolynomial[Complex](f.len)
+    var f0, f1 = initPolynomial[T](dlen)
+    for i in 0..<dlen:
+      f0[i] = f[2*i]
+      f1[i] = f[2*i+1]
+    let
+      ff0 = fft(f0, zeta*zeta)
+      ff1 = fft(f1, zeta*zeta)
+    var t = 1.complex
+    for i in 0 ..< f.len:
+      result[i] = ff0[i mod dlen] + ff1[i mod dlen] * t
+      t *= zeta
 
-include nim/utils/base
-
-include nim/math/modint
-
-const MOD = 998244353
-
-type
-  mi = ModInt[MOD]
-
-input:
-  (N, Q): int
-  a: seq[int, (it.initModInt, 1.initModInt)]
-
-var
-  segt = initLazySegT[(mi, mi), (mi, mi)](
-    a,
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i0[0] + i1[0], i0[1] + i1[1]),
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i1[0] * i0[0] + i1[1] * i0[1], i0[1]),
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i0[0] * i1[0], i0[1] * i1[0] + i1[1]),
-    (initModInt(0), initModInt(1)),
-    (initModInt(1), initModInt(0))
-  )
-
-for _ in range(Q):
-  let
-    tmp = stdin.readLine.split.map(parseInt)
-  if tmp[0] == 0:
-    segt.updateRange(tmp[1], tmp[2], (initModInt(tmp[3]), initModInt(tmp[4])))
-  else:
-    echo segt.fold(tmp[1], tmp[2])[0]
+  proc fftConvolute[T](f, g: Polynomial[T]): Polynomial[float] =
+    var
+      f = f
+      g = g
+    let
+      flen = (f.len + g.len - 1).nextPowerOfTwo
+      zeta = complex(cos(2*PI/float(flen)), sin(2*PI/float(flen)))
+    f.expand(flen)
+    g.expand(flen)
+    let F = initPolynomial(zip(f.fft(zeta).coeffs, g.fft(zeta).coeffs).map((
+        it: (Complex, Complex)) => it[0]*it[1]))
+    result.coeffs = F.fft(inv(zeta)).coeffs.mapIt(it.re/float(flen))
 
 ```
 {% endraw %}

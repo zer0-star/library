@@ -25,24 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/lazy_test.nim
+# :warning: nim/math/permutation.nim
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/lazy_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 20:56:29+09:00
+* category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
+* <a href="{{ site.github.repository_url }}/blob/master/nim/math/permutation.nim">View this file on GitHub</a>
+    - Last commit date: 2020-05-29 21:27:56+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
-
-
-## Depends on
-
-* :question: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
-* :question: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
-* :heavy_check_mark: <a href="../../../library/nim/segt/lazy.nim.html">nim/segt/lazy.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code
@@ -50,40 +41,57 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
+when not declared(INCLUDE_GUARD_MATH_PERMUTATION_NIM):
+  const INCLUDE_GUARD_MATH_PERMUTATION_NIM = 1
 
-include nim/segt/lazy
+  import sequtils
 
-include nim/utils/base
+  type
+    Permutation = object
+      size: int
+      data: seq[int]
 
-include nim/math/modint
+  proc initPerm(size: int): Permutation {.inline.} =
+    Permutation(size: size, data: toSeq(0 .. size-1))
 
-const MOD = 998244353
+  proc nonInitializedPermutation(size: int): Permutation {.inline.} =
+    Permutation(size: size, data: newSeq[int](size))
 
-type
-  mi = ModInt[MOD]
+  proc swap(p: var Permutation; x, y: int) {.inline.} =
+    swap(p.data[x], p.data[y])
 
-input:
-  (N, Q): int
-  a: seq[int, (it.initModInt, 1.initModInt)]
+  proc `[]`(p: Permutation; x: int): int {.inline.} =
+    p.data[x]
 
-var
-  segt = initLazySegT[(mi, mi), (mi, mi)](
-    a,
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i0[0] + i1[0], i0[1] + i1[1]),
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i1[0] * i0[0] + i1[1] * i0[1], i0[1]),
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i0[0] * i1[0], i0[1] * i1[0] + i1[1]),
-    (initModInt(0), initModInt(1)),
-    (initModInt(1), initModInt(0))
-  )
+  proc inv(p: Permutation): Permutation {.inline.} =
+    result = nonInitializedPermutation(p.size)
+    for i in 0 ..< p.size:
+      result.data[p[i]] = i
 
-for _ in range(Q):
-  let
-    tmp = stdin.readLine.split.map(parseInt)
-  if tmp[0] == 0:
-    segt.updateRange(tmp[1], tmp[2], (initModInt(tmp[3]), initModInt(tmp[4])))
-  else:
-    echo segt.fold(tmp[1], tmp[2])[0]
+  proc `*`(p, q: Permutation): Permutation {.inline.} =
+    assert p.size == q.size
+    result = nonInitializedPermutation(p.size)
+    for i in 0 ..< p.size:
+      result.data[i] = q[p[i]]
+
+  proc `*=`(p: var Permutation; q: Permutation) {.inline.} =
+    p = p*q
+
+  proc pow(p: Permutation; x: int): Permutation {.inline.} =
+    var
+      x = x
+      p = p
+    result = initPerm(p.size)
+    while x > 0:
+      if (x and 1) > 0:
+        result *= p
+      p *= p
+      x = x shr 1
+
+  proc apply[T](p: Permutation; xs: seq[T]): seq[T] =
+    result = newSeq[T](xs.len)
+    for i in 0 ..< xs.len:
+      result[p[i]] = xs[i]
 
 ```
 {% endraw %}

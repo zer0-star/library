@@ -25,23 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/lazy_test.nim
+# :x: test/nim/ntt_convolution_mod_one_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/lazy_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 20:56:29+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/nim/ntt_convolution_mod_one_test.nim">View this file on GitHub</a>
+    - Last commit date: 2020-05-29 21:27:56+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/range_affine_range_sum">https://judge.yosupo.jp/problem/range_affine_range_sum</a>
 
 
 ## Depends on
 
 * :question: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
 * :question: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
-* :heavy_check_mark: <a href="../../../library/nim/segt/lazy.nim.html">nim/segt/lazy.nim</a>
+* :x: <a href="../../../library/nim/math/ntt.nim.html">nim/math/ntt.nim</a>
+* :x: <a href="../../../library/nim/math/polynomial.nim.html">nim/math/polynomial.nim</a>
 * :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
@@ -50,40 +50,20 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
-
-include nim/segt/lazy
-
+include nim/math/ntt
 include nim/utils/base
 
-include nim/math/modint
-
-const MOD = 998244353
-
-type
-  mi = ModInt[MOD]
+import strutils
 
 input:
-  (N, Q): int
-  a: seq[int, (it.initModInt, 1.initModInt)]
+  (N, M): int
+  a: seq[int]; it.initPolynomial
+  b: seq[int]; it.initPolynomial
 
-var
-  segt = initLazySegT[(mi, mi), (mi, mi)](
-    a,
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i0[0] + i1[0], i0[1] + i1[1]),
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i1[0] * i0[0] + i1[1] * i0[1], i0[1]),
-    (((mi, mi), (mi, mi)) -> (mi, mi)) => (i0[0] * i1[0], i0[1] * i1[0] + i1[1]),
-    (initModInt(0), initModInt(1)),
-    (initModInt(1), initModInt(0))
-  )
+let
+  c = nttConvolute_innerProc(a, b, 998244353, 3)
 
-for _ in range(Q):
-  let
-    tmp = stdin.readLine.split.map(parseInt)
-  if tmp[0] == 0:
-    segt.updateRange(tmp[1], tmp[2], (initModInt(tmp[3]), initModInt(tmp[4])))
-  else:
-    echo segt.fold(tmp[1], tmp[2])[0]
+echo c[0..<N+M-1].join(" ")
 
 ```
 {% endraw %}

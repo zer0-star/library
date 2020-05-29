@@ -25,26 +25,24 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :question: nim/math/mathMod.nim
+# :x: nim/math/polynomial.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
-* <a href="{{ site.github.repository_url }}/blob/master/nim/math/mathMod.nim">View this file on GitHub</a>
-    - Last commit date: 2020-01-02 00:38:45+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/nim/math/polynomial.nim">View this file on GitHub</a>
+    - Last commit date: 2020-05-29 21:27:56+09:00
 
 
 
 
 ## Required by
 
-* :question: <a href="modint.nim.html">nim/math/modint.nim</a>
 * :x: <a href="ntt.nim.html">nim/math/ntt.nim</a>
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
 * :x: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
 
 
@@ -53,13 +51,54 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-when not declared(INCLUDE_GUARD_MATH_MATHMOD_NIM):
-  const INCLUDE_GUARD_MATH_MATHMOD_NIM = 1
-  proc `mod`(x, y: int): int {.inline.} =
-    if x < 0:
-      y - system.`mod`(-x, y)
-    else:
-      system.`mod`(x, y)
+when not declared(INCLUDE_GUARD_MATH_POLYNOMIAL_NIM):
+  const INCLUDE_GUARD_MATH_POLYNOMIAL_NIM = 1
+  import sequtils, math
+
+  type
+    Polynomial[T] = object
+      coeffs: seq[T]
+
+  proc initPolynomial[T](a: seq[T]): Polynomial[T] {.inline.} =
+    Polynomial[T](coeffs: a)
+
+  proc initPolynomial[T](n: int): Polynomial[T] {.inline.} =
+    Polynomial[T](coeffs: newSeq[T](n))
+
+  proc expand[T](a: var Polynomial[T]; size: int) {.inline.} =
+    if a.len < size:
+      a.coeffs.setLen(size)
+
+  proc `+`[T](a, b: Polynomial[T]): Polynomial[T] =
+    result = a
+    result.expand(max(a.coeffs.len, b.coeffs.len))
+    for i, t in b:
+      result.coeffs[i] += t
+
+  proc `-`[T](a: Polynomial[T]): Polynomial[T] {.inline.} =
+    result.coeffs = a.coeffs.mapIt(-it)
+
+  proc `-`[T](a, b: Polynomial[T]): Polynomial[T] {.inline.} =
+    a + (-b)
+
+  proc at[T](a: Polynomial[T]; t: int): T {.inline.} =
+    a.coeffs[t]
+
+  proc `[]`[T](a: Polynomial[T]; t: int): T {.inline.} =
+    a.at(t)
+
+  proc `[]=`[T](a: var Polynomial[T]; t: Natural; c: T) {.inline.} =
+    a.coeffs[t] = c
+
+  proc call[T, S](a: Polynomial[T]; x: S): S {.inline.} =
+    var t = x
+    result = a[0]
+    for i in 1 ..< a.len:
+      result += t * a[i]
+      t *= x
+
+  proc len[T](a: Polynomial[T]): int {.inline.} =
+    a.coeffs.len
 
 ```
 {% endraw %}

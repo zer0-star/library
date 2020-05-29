@@ -36,6 +36,11 @@ layout: default
 
 
 
+## Required by
+
+* :warning: <a href="../flow/dinic.nim.html">nim/flow/dinic.nim</a>
+
+
 ## Code
 
 <a id="unbundled"></a>

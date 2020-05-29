@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../../index.html#49819a369e0575799fa91c6b01a4bf57">nim/flow</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/flow/dinic.nim">View this file on GitHub</a>
-    - Last commit date: 2020-01-02 00:38:45+09:00
+    - Last commit date: 2020-05-29 21:27:56+09:00
 
 
+
+
+## Depends on
+
+* :warning: <a href="../datast/deque.nim.html">nim/datast/deque.nim</a>
 
 
 ## Code
@@ -42,7 +47,7 @@ layout: default
 {% raw %}
 ```cpp
 # %lib-executor: replace datast/deque.nim
-include ../datast/deque
+include nim/datast/deque
 # %lib-executor: end
 when not declared(INCLUDE_GUARD_FLOW_DINIC_NIM):
   const INCLUDE_GUARD_FLOW_DINIC_NIM = 1
