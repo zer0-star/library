@@ -34,7 +34,7 @@ jobs:
       - name: Install dependencies (Nim)
         run: |
           wget https://nim-lang.org/download/nim-1.0.6-linux_x64.tar.xz
-          tar Jxfv nim-1.0.6-linux_x64.tar.xz 2> /dev/null
+          tar Jxfv nim-1.0.6-linux_x64.tar.xz 2>&1 > /dev/null
           cd nim-1.0.6
           ./install.sh /usr/local/bin
           cd ..
