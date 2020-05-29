@@ -121,7 +121,7 @@ when not declared(INCLUDE_GUARD_MATH_MODINT_NIM):
     let n = args.len
     var
       coe = newSeq[int](n)
-      con = newSeqWith(P, newSeq[int](n))
+      con = newSeqWith(n, newSeq[int](P))
     for c in coe.mitems:
       c = 1
     for i in 0..<n:

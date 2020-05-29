@@ -11,6 +11,12 @@ input:
   b: seq[int]; it.initPolynomial
 
 let
-  c = nttConvolute_innerProc(a, b, 998244353, 3)
+  c = nttConvolute(a, b, 998244353)
 
-echo c[0..<N+M-1].join(" ")
+var
+  res: seq[int]
+
+for i in range(N + M - 1):
+  res.add c[i]
+
+echo res.join(" ")

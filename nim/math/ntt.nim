@@ -75,8 +75,8 @@ when not declared(INCLUDE_GUARD_MATH_FFT_NIM):
         n-1).coeffs).mapIt(it[0]*it[1] mod M))
     result = F.ntt(zeta_inv, M, n-1).coeffs.mapIt(it * invlen mod M)
 
-  proc nttConvolute(f, g: Polynomial[int]; USE: int = 3;
-      modulo = -1): Polynomial[int] =
+  proc nttConvolute(f, g: Polynomial[int]; modulo = -1;
+      USE: int = 3): Polynomial[int] =
     var tmp = newSeq[(int, seq[int])](USE)
     for i in 0..<USE:
       let (M, PRoot) = NTT_PRIMES[i]
