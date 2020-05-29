@@ -25,31 +25,32 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :question: nim/math/modint.nim
+# :heavy_check_mark: nim/math/modint.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/math/modint.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 20:56:29+09:00
+    - Last commit date: 2020-05-29 21:35:37+09:00
 
 
 
 
 ## Depends on
 
-* :question: <a href="mathMod.nim.html">nim/math/mathMod.nim</a>
+* :heavy_check_mark: <a href="mathMod.nim.html">nim/math/mathMod.nim</a>
 
 
 ## Required by
 
-* :x: <a href="ntt.nim.html">nim/math/ntt.nim</a>
+* :heavy_check_mark: <a href="ntt.nim.html">nim/math/ntt.nim</a>
 
 
 ## Verified with
 
 * :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
-* :x: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
 
 
 ## Code
@@ -180,7 +181,7 @@ when not declared(INCLUDE_GUARD_MATH_MODINT_NIM):
     let n = args.len
     var
       coe = newSeq[int](n)
-      con = newSeqWith(P, newSeq[int](n))
+      con = newSeqWith(n, newSeq[int](P))
     for c in coe.mitems:
       c = 1
     for i in 0..<n:

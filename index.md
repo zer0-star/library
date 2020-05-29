@@ -54,11 +54,11 @@ layout: default
 ### nim/math
 
 * :warning: <a href="library/nim/math/fft.nim.html">nim/math/fft.nim</a>
-* :question: <a href="library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
-* :question: <a href="library/nim/math/modint.nim.html">nim/math/modint.nim</a>
-* :x: <a href="library/nim/math/ntt.nim.html">nim/math/ntt.nim</a>
+* :heavy_check_mark: <a href="library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
+* :heavy_check_mark: <a href="library/nim/math/modint.nim.html">nim/math/modint.nim</a>
+* :heavy_check_mark: <a href="library/nim/math/ntt.nim.html">nim/math/ntt.nim</a>
 * :warning: <a href="library/nim/math/permutation.nim.html">nim/math/permutation.nim</a>
-* :x: <a href="library/nim/math/polynomial.nim.html">nim/math/polynomial.nim</a>
+* :heavy_check_mark: <a href="library/nim/math/polynomial.nim.html">nim/math/polynomial.nim</a>
 
 
 <div id="1698669b3e8f840124934f80c60539e2"></div>
@@ -73,12 +73,13 @@ layout: default
 
 ### nim/utils
 
-* :question: <a href="library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :heavy_check_mark: <a href="library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
-* :x: <a href="verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
 
 

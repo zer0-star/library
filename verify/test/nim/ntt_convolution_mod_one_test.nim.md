@@ -25,24 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/nim/ntt_convolution_mod_one_test.nim
+# :heavy_check_mark: test/nim/ntt_convolution_mod_one_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/nim/ntt_convolution_mod_one_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 21:27:56+09:00
+    - Last commit date: 2020-05-29 21:35:37+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
 
 
 ## Depends on
 
-* :question: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
-* :question: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
-* :x: <a href="../../../library/nim/math/ntt.nim.html">nim/math/ntt.nim</a>
-* :x: <a href="../../../library/nim/math/polynomial.nim.html">nim/math/polynomial.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/ntt.nim.html">nim/math/ntt.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/polynomial.nim.html">nim/math/polynomial.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code
@@ -50,6 +51,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+# verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod
+
 include nim/math/ntt
 include nim/utils/base
 

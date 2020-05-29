@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: nim/math/polynomial.nim
+# :heavy_check_mark: nim/math/polynomial.nim
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -38,12 +38,13 @@ layout: default
 
 ## Required by
 
-* :x: <a href="ntt.nim.html">nim/math/ntt.nim</a>
+* :heavy_check_mark: <a href="ntt.nim.html">nim/math/ntt.nim</a>
 
 
 ## Verified with
 
-* :x: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
 
 
 ## Code

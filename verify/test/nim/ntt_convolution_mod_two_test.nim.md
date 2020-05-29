@@ -25,28 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: nim/math/mathMod.nim
+# :heavy_check_mark: test/nim/ntt_convolution_mod_two_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
-* <a href="{{ site.github.repository_url }}/blob/master/nim/math/mathMod.nim">View this file on GitHub</a>
-    - Last commit date: 2020-01-02 00:38:45+09:00
+* category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/nim/ntt_convolution_mod_two_test.nim">View this file on GitHub</a>
+    - Last commit date: 2020-05-29 21:35:37+09:00
 
 
+* see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
 
 
-## Required by
+## Depends on
 
-* :heavy_check_mark: <a href="modint.nim.html">nim/math/modint.nim</a>
-* :heavy_check_mark: <a href="ntt.nim.html">nim/math/ntt.nim</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
-* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
-* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/ntt.nim.html">nim/math/ntt.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/math/polynomial.nim.html">nim/math/polynomial.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code
@@ -54,13 +51,28 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-when not declared(INCLUDE_GUARD_MATH_MATHMOD_NIM):
-  const INCLUDE_GUARD_MATH_MATHMOD_NIM = 1
-  proc `mod`(x, y: int): int {.inline.} =
-    if x < 0:
-      y - system.`mod`(-x, y)
-    else:
-      system.`mod`(x, y)
+# verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod
+
+include nim/math/ntt
+include nim/utils/base
+
+import strutils
+
+input:
+  (N, M): int
+  a: seq[int]; it.initPolynomial
+  b: seq[int]; it.initPolynomial
+
+let
+  c = nttConvolute(a, b, 998244353)
+
+var
+  res: seq[int]
+
+for i in range(N + M - 1):
+  res.add c[i]
+
+echo res.join(" ")
 
 ```
 {% endraw %}

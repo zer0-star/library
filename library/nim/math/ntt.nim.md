@@ -25,27 +25,28 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: nim/math/ntt.nim
+# :heavy_check_mark: nim/math/ntt.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/math/ntt.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 21:27:56+09:00
+    - Last commit date: 2020-05-29 21:35:37+09:00
 
 
 
 
 ## Depends on
 
-* :question: <a href="mathMod.nim.html">nim/math/mathMod.nim</a>
-* :question: <a href="modint.nim.html">nim/math/modint.nim</a>
-* :x: <a href="polynomial.nim.html">nim/math/polynomial.nim</a>
+* :heavy_check_mark: <a href="mathMod.nim.html">nim/math/mathMod.nim</a>
+* :heavy_check_mark: <a href="modint.nim.html">nim/math/modint.nim</a>
+* :heavy_check_mark: <a href="polynomial.nim.html">nim/math/polynomial.nim</a>
 
 
 ## Verified with
 
-* :x: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
 
 
 ## Code
@@ -130,8 +131,8 @@ when not declared(INCLUDE_GUARD_MATH_FFT_NIM):
         n-1).coeffs).mapIt(it[0]*it[1] mod M))
     result = F.ntt(zeta_inv, M, n-1).coeffs.mapIt(it * invlen mod M)
 
-  proc nttConvolute(f, g: Polynomial[int]; USE: int = 3;
-      modulo = -1): Polynomial[int] =
+  proc nttConvolute(f, g: Polynomial[int]; modulo = -1;
+      USE: int = 3): Polynomial[int] =
     var tmp = newSeq[(int, seq[int])](USE)
     for i in 0..<USE:
       let (M, PRoot) = NTT_PRIMES[i]
