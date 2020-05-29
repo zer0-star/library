@@ -1,4 +1,4 @@
-らいぶら
+らいぶら [![Actions Status](https://github.com/zer0-star/library/workflows/verify/badge.svg)](https://github.com/zer0-star/library/actions)
 
 ## あるもの
 (今のところ全部 Nim です)
