@@ -1,5 +1,5 @@
 # %lib-executor: replace datast/deque.nim
-include ../datast/deque
+include nim/datast/deque
 # %lib-executor: end
 when not declared(INCLUDE_GUARD_FLOW_DINIC_NIM):
   const INCLUDE_GUARD_FLOW_DINIC_NIM = 1
