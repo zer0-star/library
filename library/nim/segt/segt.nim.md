@@ -25,15 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: nim/segt/segt.nim
+# :heavy_check_mark: nim/segt/segt.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#1698669b3e8f840124934f80c60539e2">nim/segt</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/segt/segt.nim">View this file on GitHub</a>
-    - Last commit date: 2020-01-02 00:38:45+09:00
+    - Last commit date: 2020-05-30 00:01:34+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/nim/segt_point_add_range_sum_test.nim.html">test/nim/segt_point_add_range_sum_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/segt_point_set_range_composite_test.nim.html">test/nim/segt_point_set_range_composite_test.nim</a>
 
 
 ## Code
@@ -44,41 +50,52 @@ layout: default
 when not declared(INCLUDE_GUARD_SEGT_SEGT_NIM):
   const INCLUDE_GUARD_SEGT_SEGT_NIM = 1
 
-  import future, sequtils
+  import sequtils
+
+  when (not (NimMajor <= 0)) or NimMinor >= 19:
+    import sugar
+  else:
+    import future
 
   type
-    SegmentTree[T] = object
+    SegmentTree[T] = ref object
       n: int
       node: seq[T]
       ad: (T, T) -> T
       zero: T
 
   proc initSegT[T](data: seq[T]; ad: (T, T) -> T; zero: T): SegmentTree[T] =
-    let n = data.len.nextPowerOfTwo
+    let n = data.len
     var node = newSeq[T](2*n)
-    for i in range(data.len):
+    for i in 0 ..< data.len:
       node[i+n] = data[i]
-    for i in range(data.len, n):
+    for i in data.len ..< n:
       node[i+n] = zero
     for i in countdown(n-1, 1):
       node[i] = ad(node[2*i], node[2*i+1])
     return SegmentTree[T](n: n, node: node, ad: ad, zero: zero)
 
   proc initSegT[T](siz: int; ad: (T, T) -> T; zero: T): SegmentTree[T] =
-    let n = siz.nextPowerOfTwo
+    let n = siz
     var node = newSeqWith(2*n, zero)
     return SegmentTree[T](n: n, node: node, ad: ad, zero: zero)
 
-  proc get[T](segt: SegmentTree[T]; x: int): T =
+  proc get[T](segt: SegmentTree[T]; x: int): T {.inline.} =
     segt.node[x + segt.n]
 
-  proc update[T](segt: var SegmentTree[T]; x: int; val: T) =
+  proc update[T](segt: SegmentTree[T]; x: int; val: T) =
     var i = x + segt.n
     segt.node[i] = val
     i = i div 2
     while i > 0:
       segt.node[i] = segt.ad(segt.node[2*i], segt.node[2*i+1])
       i = i div 2
+
+  proc applyRight[T](segt: SegmentTree[T]; x: int; val: T) {.inline.} =
+    segt.update(x, segt.add(segt.get(x), val))
+
+  proc applyLeft[T](segt: SegmentTree[T]; x: int; val: T) {.inline.} =
+    segt.update(x, segt.add(val, segt.get(x)))
 
   proc query[T](segt: SegmentTree[T]; a, b: int): T =
     if segt.n <= a or b <= 0: return segt.zero
@@ -95,6 +112,8 @@ when not declared(INCLUDE_GUARD_SEGT_SEGT_NIM):
       l = l shr 1
       r = r shr 1
     return segt.ad(leftVal, rightVal)
+
+  # proc binarySearch[T](segt: SegmentTree[T]; )
 
 ```
 {% endraw %}

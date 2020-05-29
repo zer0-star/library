@@ -25,16 +25,16 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/ntt_convolution_mod_two_test.nim
+# :heavy_check_mark: test/nim/ntt_convolution_mod_1000000007_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/ntt_convolution_mod_two_test.nim">View this file on GitHub</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/nim/ntt_convolution_mod_1000000007_test.nim">View this file on GitHub</a>
     - Last commit date: 2020-05-30 00:01:34+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>
+* see: <a href="https://judge.yosupo.jp/problem/convolution_mod_1000000007">https://judge.yosupo.jp/problem/convolution_mod_1000000007</a>
 
 
 ## Depends on
@@ -51,7 +51,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod
+# verify-helper: PROBLEM https://judge.yosupo.jp/problem/convolution_mod_1000000007
 
 include nim/math/ntt
 include nim/utils/base
@@ -64,7 +64,7 @@ input:
   b: seq[int]; it.initPolynomial
 
 let
-  c = nttConvolute(a, b, 998244353)
+  c = nttConvolute(a, b, 1000000007)
 
 var
   res: seq[int]

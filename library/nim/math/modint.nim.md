@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#bd14bd52ccff4808e6325845b40c8b47">nim/math</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/math/modint.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 21:35:37+09:00
+    - Last commit date: 2020-05-30 00:01:34+09:00
 
 
 
@@ -49,8 +49,10 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_1000000007_test.nim.html">test/nim/ntt_convolution_mod_1000000007_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/segt_point_set_range_composite_test.nim.html">test/nim/segt_point_set_range_composite_test.nim</a>
 
 
 ## Code
@@ -64,6 +66,7 @@ include nim/math/mathMod
 when not declared(INCLUDE_GUARD_MATH_MODINT_NIM):
   const INCLUDE_GUARD_MATH_MODINT_NIM = 1
   import math, sequtils
+  import strutils
 
   proc extgcd(x, y: SomeInteger): (int, int) =
     if x < y:
@@ -211,6 +214,9 @@ when not declared(INCLUDE_GUARD_MATH_MODINT_NIM):
         result = result * t mod m
       t = t * t mod m
       p = p shr 1
+
+  template parseModInt(x: string): ModInt =
+    initModInt(x.parseInt)
 
 ```
 {% endraw %}

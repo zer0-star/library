@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/nim/ntt_convolution_mod_one_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-29 21:35:37+09:00
+    - Last commit date: 2020-05-30 00:01:34+09:00
 
 
 * see: <a href="https://judge.yosupo.jp/problem/convolution_mod">https://judge.yosupo.jp/problem/convolution_mod</a>

@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#004982f169dc86a24617d5ee8c1574a7">nim/utils</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/utils/base.nim">View this file on GitHub</a>
-    - Last commit date: 2020-01-02 00:38:45+09:00
+    - Last commit date: 2020-05-30 00:01:34+09:00
 
 
 
@@ -39,8 +39,12 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_1000000007_test.nim.html">test/nim/ntt_convolution_mod_1000000007_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/segt_point_add_range_sum_test.nim.html">test/nim/segt_point_add_range_sum_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/segt_point_set_range_composite_test.nim.html">test/nim/segt_point_set_range_composite_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/unionfind_test.nim.html">test/nim/unionfind_test.nim</a>
 
 
 ## Code
@@ -79,12 +83,12 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
     toSeq(x..y-1)
   proc range(x: int): seq[int] {.inline.} =
     toSeq(0..x-1)
-  proc discardableId[T](x: T): T {.discardable.} =
+  proc discardableId[T](x: T): T {.inline, discardable.} =
     return x
   macro `:=`(x, y: untyped): untyped =
     if (x.kind == nnkIdent):
       return quote do:
-        when declared(`x`):
+        when declaredInScope(`x`):
           `x` = `y`
         else:
           var `x` = `y`
@@ -257,6 +261,14 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
           ids.add(quote do: newSeqWith(`cnt`, `val`))
         letSect.add ids
     result.add letSect
+
+  proc makeSeq[T, Idx](num: array[Idx, int]; init: T): auto =
+    when num.len == 1:
+      return newSeqWith(num[0], init)
+    else:
+      var tmp: array[num.len-1, int]
+      for i, t in tmp.mpairs: t = num[i+1]
+      return newSeqWith(num[0], makeSeq(tmp, init))
 
 ```
 {% endraw %}

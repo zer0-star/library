@@ -39,7 +39,7 @@ layout: default
 ### nim/datast
 
 * :warning: <a href="library/nim/datast/deque.nim.html">nim/datast/deque.nim</a>
-* :warning: <a href="library/nim/datast/unionfind.nim.html">nim/datast/unionfind.nim</a>
+* :heavy_check_mark: <a href="library/nim/datast/unionfind.nim.html">nim/datast/unionfind.nim</a>
 
 
 <div id="49819a369e0575799fa91c6b01a4bf57"></div>
@@ -66,7 +66,7 @@ layout: default
 ### nim/segt
 
 * :heavy_check_mark: <a href="library/nim/segt/lazy.nim.html">nim/segt/lazy.nim</a>
-* :warning: <a href="library/nim/segt/segt.nim.html">nim/segt/segt.nim</a>
+* :heavy_check_mark: <a href="library/nim/segt/segt.nim.html">nim/segt/segt.nim</a>
 
 
 <div id="004982f169dc86a24617d5ee8c1574a7"></div>
@@ -79,7 +79,11 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_1000000007_test.nim.html">test/nim/ntt_convolution_mod_1000000007_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/segt_point_add_range_sum_test.nim.html">test/nim/segt_point_add_range_sum_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/segt_point_set_range_composite_test.nim.html">test/nim/segt_point_set_range_composite_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/unionfind_test.nim.html">test/nim/unionfind_test.nim</a>
 
 

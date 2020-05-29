@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: nim/datast/unionfind.nim
+# :heavy_check_mark: nim/datast/unionfind.nim
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-01-02 00:38:45+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/nim/unionfind_test.nim.html">test/nim/unionfind_test.nim</a>
 
 
 ## Code
