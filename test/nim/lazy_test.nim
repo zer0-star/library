@@ -1,10 +1,10 @@
 # verify-helper: PROBLEM https://judge.yosupo.jp/problem/range_affine_range_sum
 
-include "nim/segt/lazy"
+include nim/segt/lazy
 
-include "nim/utils/base"
+include nim/utils/base
 
-include "nim/math/modint"
+include nim/math/modint
 
 const MOD = 998244353
 
