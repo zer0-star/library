@@ -19,6 +19,7 @@ jobs:
           sed -i "s/pathlib\.Path(path)/pathlib.Path(item)/" onlinejudge_verify/languages/nim.py
           python setup.py install
           pip3 install online-judge-verify-helper
+          cd ..
 
         # run: pip3 install -U online-judge-verify-helper
       # required only if you want to verify C# script files
