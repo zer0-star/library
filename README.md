@@ -3,9 +3,11 @@
 
 ## あるもの
 (今のところ全部 Nim です)
-- SegmentTree (普通の)
-- UnionFind (size式)
-- Deque
+- SegmentTree (普通のと遅延するの)
+- UnionFind
+- Deque (これそのうち消えるかも (Nim のバージョンが新しくなると、いらないので))
 - Dinic法
-- modint
+- modint (Garner のアルゴリズムとかもある)
 - 負数に対してもいい感じになる剰余
+- fft/ntt と畳み込み
+- Permutation (置換)
