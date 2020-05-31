@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../../library/nim/datast/unionfind.nim.html">nim/datast/unionfind.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code

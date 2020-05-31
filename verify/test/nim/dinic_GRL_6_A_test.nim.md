@@ -25,22 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/nim/dinic_GRL_6_A_test.nim
+# :heavy_check_mark: test/nim/dinic_GRL_6_A_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/nim/dinic_GRL_6_A_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-31 12:53:14+09:00
+    - Last commit date: 2020-05-31 12:54:27+09:00
 
 
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A</a>
 
 
 ## Depends on
 
-* :x: <a href="../../../library/nim/datast/deque.nim.html">nim/datast/deque.nim</a>
-* :x: <a href="../../../library/nim/flow/dinic.nim.html">nim/flow/dinic.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/datast/deque.nim.html">nim/datast/deque.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/flow/dinic.nim.html">nim/flow/dinic.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code
@@ -48,6 +49,8 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+# verify-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A
+
 include nim/flow/dinic
 
 include nim/utils/base

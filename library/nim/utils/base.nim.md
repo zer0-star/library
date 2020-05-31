@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :question: nim/utils/base.nim
+# :heavy_check_mark: nim/utils/base.nim
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../../verify/test/nim/dinic_GRL_6_A_test.nim.html">test/nim/dinic_GRL_6_A_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/dinic_GRL_6_A_test.nim.html">test/nim/dinic_GRL_6_A_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/lazy_test.nim.html">test/nim/lazy_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_1000000007_test.nim.html">test/nim/ntt_convolution_mod_1000000007_test.nim</a>
 * :heavy_check_mark: <a href="../../../verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
