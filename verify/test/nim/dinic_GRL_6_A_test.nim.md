@@ -25,23 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/segt_point_set_range_composite_test.nim
+# :x: test/nim/dinic_GRL_6_A_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/segt_point_set_range_composite_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-30 00:01:34+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/nim/dinic_GRL_6_A_test.nim">View this file on GitHub</a>
+    - Last commit date: 2020-05-31 12:53:14+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/point_set_range_composite">https://judge.yosupo.jp/problem/point_set_range_composite</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/nim/math/mathMod.nim.html">nim/math/mathMod.nim</a>
-* :heavy_check_mark: <a href="../../../library/nim/math/modint.nim.html">nim/math/modint.nim</a>
-* :heavy_check_mark: <a href="../../../library/nim/segt/segt.nim.html">nim/segt/segt.nim</a>
+* :x: <a href="../../../library/nim/datast/deque.nim.html">nim/datast/deque.nim</a>
+* :x: <a href="../../../library/nim/flow/dinic.nim.html">nim/flow/dinic.nim</a>
 * :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
@@ -50,33 +48,22 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/point_set_range_composite
+include nim/flow/dinic
 
-include nim/segt/segt
 include nim/utils/base
-include nim/math/modint
-
-const MOD = 998244353
 
 input:
-  (N, Q): int
-  data[N]: (ModInt, ModInt)
+  (V, E): int
 
 var
-  segt = initSegT(
-    data,
-    (x, y) => (x[0] * y[0], x[1] * y[0] + y[1]),
-    (initModInt(1), initModInt(0))
-  )
+  dnc = initDinic[int](V)
 
-for _ in range(Q):
+for _ in range(E):
   input:
-    (t, a, b, c): int
-  if t == 0:
-    segt.update(a, (initModInt(b), initModInt(c)))
-  else:
-    let (x, y) = segt.query(a, b)
-    echo x * c + y
+    (u, v, c): int
+  dnc.addEdge(u, v, c)
+
+echo dnc.calc(0, V-1)
 
 ```
 {% endraw %}

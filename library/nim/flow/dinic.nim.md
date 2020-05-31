@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: nim/flow/dinic.nim
+# :x: nim/flow/dinic.nim
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -38,7 +38,12 @@ layout: default
 
 ## Depends on
 
-* :warning: <a href="../datast/deque.nim.html">nim/datast/deque.nim</a>
+* :x: <a href="../datast/deque.nim.html">nim/datast/deque.nim</a>
+
+
+## Verified with
+
+* :x: <a href="../../../verify/test/nim/dinic_GRL_6_A_test.nim.html">test/nim/dinic_GRL_6_A_test.nim</a>
 
 
 ## Code
