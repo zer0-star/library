@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/nim/scc_GRL_3_C_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-08-05 22:14:10+09:00
+    - Last commit date: 2020-08-05 22:31:18+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C</a>

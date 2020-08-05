@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#d7814be0005a769cae255fd4fcded0e9">nim/graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/graph/scc.nim">View this file on GitHub</a>
-    - Last commit date: 2020-08-05 22:14:10+09:00
+    - Last commit date: 2020-08-05 22:31:18+09:00
 
 
 
@@ -83,7 +83,7 @@ when not declared(INCLUDE_GUARD_GRAPH_SCC_NIM):
 
     for i in 0 ..< n:
       dfs(i)
-    for i in 0 ..< n:
+    for i in stack.reversed:
       rdfs(i, result)
 
 ```
