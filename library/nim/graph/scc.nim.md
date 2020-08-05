@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: nim/graph/scc.nim
+# :heavy_check_mark: nim/graph/scc.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d7814be0005a769cae255fd4fcded0e9">nim/graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/nim/graph/scc.nim">View this file on GitHub</a>
-    - Last commit date: 2020-08-05 22:31:18+09:00
+    - Last commit date: 2020-08-05 22:34:01+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../../verify/test/nim/scc_GRL_3_C_test.nim.html">test/nim/scc_GRL_3_C_test.nim</a>
+* :heavy_check_mark: <a href="../../../verify/test/nim/scc_GRL_3_C_test.nim.html">test/nim/scc_GRL_3_C_test.nim</a>
 
 
 ## Code
@@ -49,7 +49,7 @@ layout: default
 when not declared(INCLUDE_GUARD_GRAPH_SCC_NIM):
   const INCLUDE_GUARD_GRAPH_SCC_NIM = 1
 
-  import sequtils
+  import sequtils, algorithm
 
   proc stronglyConnectedComponents(g: seq[seq[int]]): seq[int] =
     let

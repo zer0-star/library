@@ -53,7 +53,7 @@ layout: default
 
 ### nim/graph
 
-* :x: <a href="library/nim/graph/scc.nim.html">nim/graph/scc.nim</a>
+* :heavy_check_mark: <a href="library/nim/graph/scc.nim.html">nim/graph/scc.nim</a>
 
 
 <div id="bd14bd52ccff4808e6325845b40c8b47"></div>
@@ -80,7 +80,7 @@ layout: default
 
 ### nim/utils
 
-* :question: <a href="library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :heavy_check_mark: <a href="library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Verify Files
@@ -90,7 +90,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_1000000007_test.nim.html">test/nim/ntt_convolution_mod_1000000007_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_one_test.nim.html">test/nim/ntt_convolution_mod_one_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/ntt_convolution_mod_two_test.nim.html">test/nim/ntt_convolution_mod_two_test.nim</a>
-* :x: <a href="verify/test/nim/scc_GRL_3_C_test.nim.html">test/nim/scc_GRL_3_C_test.nim</a>
+* :heavy_check_mark: <a href="verify/test/nim/scc_GRL_3_C_test.nim.html">test/nim/scc_GRL_3_C_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/segt_point_add_range_sum_test.nim.html">test/nim/segt_point_add_range_sum_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/segt_point_set_range_composite_test.nim.html">test/nim/segt_point_set_range_composite_test.nim</a>
 * :heavy_check_mark: <a href="verify/test/nim/unionfind_test.nim.html">test/nim/unionfind_test.nim</a>

@@ -41,7 +41,7 @@ layout: default
 
 * :heavy_check_mark: <a href="../../../library/nim/datast/deque.nim.html">nim/datast/deque.nim</a>
 * :heavy_check_mark: <a href="../../../library/nim/flow/dinic.nim.html">nim/flow/dinic.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :heavy_check_mark: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
 ## Code
