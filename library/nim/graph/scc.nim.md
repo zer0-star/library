@@ -25,22 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/unionfind_test.nim
+# :x: nim/graph/scc.nim
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/unionfind_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-30 00:01:34+09:00
+* category: <a href="../../../index.html#d7814be0005a769cae255fd4fcded0e9">nim/graph</a>
+* <a href="{{ site.github.repository_url }}/blob/master/nim/graph/scc.nim">View this file on GitHub</a>
+    - Last commit date: 2020-08-05 22:14:10+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
 
 
-## Depends on
+## Verified with
 
-* :heavy_check_mark: <a href="../../../library/nim/datast/unionfind.nim.html">nim/datast/unionfind.nim</a>
-* :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
+* :x: <a href="../../../verify/test/nim/scc_GRL_3_C_test.nim.html">test/nim/scc_GRL_3_C_test.nim</a>
 
 
 ## Code
@@ -48,24 +46,45 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind
+when not declared(INCLUDE_GUARD_GRAPH_SCC_NIM):
+  const INCLUDE_GUARD_GRAPH_SCC_NIM = 1
 
-include nim/datast/unionfind
-include nim/utils/base
+  import sequtils
 
-input:
-  (N, Q): int
+  proc stronglyConnectedComponents(g: seq[seq[int]]): seq[int] =
+    let
+      n = g.len
+    var
+      rg = newSeqWith(n, newSeq[int](0))
+      visited = newSeq[bool](n)
+      stack = newSeq[int](0)
 
-var
-  uf = initUF(N)
+    result = newSeqWith(n, -1)
 
-for _ in range(Q):
-  input:
-    (t, a, b): int
-  if t == 0:
-    uf.union(a, b)
-  else:
-    echo int(uf.isSame(a, b))
+    proc dfs(i: int) =
+      if visited[i]: return
+      visited[i] = true
+      for e in g[i]:
+        dfs(e)
+      stack.add i
+
+    proc rdfs(i: int; res: var seq[int]; upd = true) =
+      var
+        count {.global.} = 0
+      if res[i] != -1: return
+      res[i] = count
+      for e in rg[i]:
+        rdfs(e, res, false)
+      if upd: count.inc
+
+    for i, w in g:
+      for e in w:
+        rg[e].add i
+
+    for i in 0 ..< n:
+      dfs(i)
+    for i in 0 ..< n:
+      rdfs(i, result)
 
 ```
 {% endraw %}

@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/nim/unionfind_test.nim
+# :x: test/nim/scc_GRL_3_C_test.nim
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#b0410b68ca655a4ccae07472b9036d44">test/nim</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/nim/unionfind_test.nim">View this file on GitHub</a>
-    - Last commit date: 2020-05-30 00:01:34+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/nim/scc_GRL_3_C_test.nim">View this file on GitHub</a>
+    - Last commit date: 2020-08-05 22:14:10+09:00
 
 
-* see: <a href="https://judge.yosupo.jp/problem/unionfind">https://judge.yosupo.jp/problem/unionfind</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../../library/nim/datast/unionfind.nim.html">nim/datast/unionfind.nim</a>
+* :x: <a href="../../../library/nim/graph/scc.nim.html">nim/graph/scc.nim</a>
 * :question: <a href="../../../library/nim/utils/base.nim.html">nim/utils/base.nim</a>
 
 
@@ -48,24 +48,31 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-# verify-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind
+# verify-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C
 
-include nim/datast/unionfind
+include nim/graph/scc
+
 include nim/utils/base
 
 input:
-  (N, Q): int
+  (V, E): int
 
-var
-  uf = initUF(N)
-
-for _ in range(Q):
+var graph = newSeqWith(V, newSeq[int](0))
+for i in range(E):
   input:
-    (t, a, b): int
-  if t == 0:
-    uf.union(a, b)
-  else:
-    echo int(uf.isSame(a, b))
+    (s, t): int
+  graph[s].add t
+
+let
+  scc = stronglyConnectedComponents(graph)
+
+input:
+  Q: int
+
+for i in range(Q):
+  input:
+    (a, b): int
+  echo int(scc[a] == scc[b])
 
 ```
 {% endraw %}
