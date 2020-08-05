@@ -35,5 +35,5 @@ when not declared(INCLUDE_GUARD_GRAPH_SCC_NIM):
 
     for i in 0 ..< n:
       dfs(i)
-    for i in 0 ..< n:
+    for i in stack.reversed:
       rdfs(i, result)
