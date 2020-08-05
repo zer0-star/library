@@ -1,7 +1,7 @@
 when not declared(INCLUDE_GUARD_GRAPH_SCC_NIM):
   const INCLUDE_GUARD_GRAPH_SCC_NIM = 1
 
-  import sequtils
+  import sequtils, algorithm
 
   proc stronglyConnectedComponents(g: seq[seq[int]]): seq[int] =
     let
