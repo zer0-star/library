@@ -86,9 +86,9 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
     result.add quote do: (let `t` = stdin.readLine.split)
     var p : NimNode
     if ty.kind == nnkPar:
-      p := nnkPar.newTree()
+      p = nnkPar.newTree()
     elif ty.kind == nnkTupleConstr:
-      p := nnkTupleConstr.newTree()
+      p = nnkTupleConstr.newTree()
     for i, typ_tmp in ty.pairs:
       var ece, typ: NimNode
       if typ_tmp.kind == nnkExprColonExpr:
