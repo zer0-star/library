@@ -84,7 +84,11 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
     result = nnkStmtListExpr.newTree()
     t := genSym()
     result.add quote do: (let `t` = stdin.readLine.split)
-    p := nnkPar.newTree()
+    var p : NimNode
+    if ty.kind == nnkPar:
+      p := nnkPar.newTree()
+    elif ty.kind == nnkTupleConstr:
+      p := nnkTupleConstr.newTree()
     for i, typ_tmp in ty.pairs:
       var ece, typ: NimNode
       if typ_tmp.kind == nnkExprColonExpr:
@@ -114,7 +118,7 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
           else:
             stdin.readLine.split.map(parseInnerType(ty))
         ]#
-    elif ty.kind == nnkPar:
+    elif ty.kind == nnkTupleConstr or ty.kind == nnkPar: # support Nim version < 1.6.0
       return inputAsTuple(ty)
     elif ty.repr == "string":
       return quote do: stdin.readLine
@@ -147,7 +151,7 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
         else:
           tmp.add val
         letSect.add tmp
-      elif defs[0].kind == nnkPar:
+      elif defs[0].kind == nnkTupleConstr or defs[0].kind == nnkPar:
         vt := nnkVarTuple.newTree()
         for id in defs[0]:
           vt.add id
@@ -155,8 +159,14 @@ when not declared(INCLUDE_GUARD_UTILS_BASE_NIM):
         sle := nnkStmtListExpr.newTree()
         t := genSym()
         sle.add quote do: (let `t` = stdin.readLine.split)
-        p := nnkPar.newTree()
-        if defs[1][0].kind == nnkPar:
+        var p: NimNode
+        if defs[0].kind == nnkTupleConstr:
+          p = nnkTupleConstr.newTree()
+        else: 
+          # defs[0].kind == nnkPar
+          # support Nim version < 1.6.0
+          p = nnkPar.newTree()
+        if defs[1][0].kind == nnkTupleConstr or defs[1][0].kind == nnkPar:
           for i, typ in defs[1][0].pairs:
             if typ.repr == "string":
               p.add quote do: `t`[`i`]
