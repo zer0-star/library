@@ -4,5 +4,8 @@
   },
   "cpp": {
     "comment": "// "
+  },
+  "haskell": {
+    "comment": "-- "
   }
 }
