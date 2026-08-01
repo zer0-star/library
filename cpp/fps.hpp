@@ -21,8 +21,8 @@ class formal_power_series {
   explicit formal_power_series(int n) : v(n) {}
   formal_power_series(int n, T val) : v(n, val) {}
 
-  formal_power_series(const std::vector<T>& v) : v(v) {}
-  formal_power_series(std::vector<T>&& v) : v(v) {}
+  formal_power_series(const std::vector<T>& v_) : v(v_) {}
+  formal_power_series(std::vector<T>&& v_) : v(v_) {}
 
   template <class InputIterator>
   formal_power_series(InputIterator first, InputIterator last)
@@ -39,6 +39,13 @@ class formal_power_series {
 
   inline iterator end() { return v.end(); }
   inline const_iterator end() const { return v.end(); }
+
+  friend std::istream& operator>>(std::istream& is, fps& f) {
+    for (T& x : f.v) {
+      is >> x;
+    }
+    return is;
+  }
 
   fps take(int n) const {
     fps res(v.begin(), v.begin() + std::min(n, (int)v.size()));
